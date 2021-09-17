@@ -1,0 +1,13 @@
+[Unit]
+Description=Temperature receiver
+Requires=bluetooth.service
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/MiTemperature2
+ExecStart=python3 LYWSD03MMC.py --devicelistfile home_sensors.ini --atc --battery --callback sendToInflux.sh
+User=pi
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
